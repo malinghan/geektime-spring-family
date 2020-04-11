@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.net.UnknownHostException;
@@ -35,7 +36,17 @@ public class SpringBucksApplication implements ApplicationRunner {
 	public RedisTemplate<String, Coffee> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
 		RedisTemplate<String, Coffee> template = new RedisTemplate<>();
 		template.setConnectionFactory(redisConnectionFactory);
+//		setSerializer(template);
 		return template;
+	}
+
+	/**
+	 * 设置RedisTemplate的序列化方式
+	 * @param redisTemplate
+	 */
+	protected void setSerializer(RedisTemplate redisTemplate) {
+		redisTemplate.setDefaultSerializer(new StringRedisSerializer());
+		redisTemplate.afterPropertiesSet();
 	}
 
 	@Bean
