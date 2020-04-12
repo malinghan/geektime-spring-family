@@ -27,6 +27,7 @@ public class WaiterServiceApplication extends AbstractR2dbcConfiguration {
 	}
 
 	@Bean
+	@Override
 	public ConnectionFactory connectionFactory() {
 		return new H2ConnectionFactory(
 				H2ConnectionConfiguration.builder()
@@ -36,6 +37,7 @@ public class WaiterServiceApplication extends AbstractR2dbcConfiguration {
 	}
 
 	@Bean
+	@Override
 	public R2dbcCustomConversions r2dbcCustomConversions() {
 		Dialect dialect = getDialect(connectionFactory());
 		CustomConversions.StoreConversions storeConversions =

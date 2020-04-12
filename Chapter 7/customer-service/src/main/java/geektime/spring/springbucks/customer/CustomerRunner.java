@@ -26,8 +26,11 @@ public class CustomerRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        //查询列表
         readMenu();
+        //添加了一个订单
         Long id = orderCoffee();
+        //查询这个订单
         queryOrder(id);
     }
 

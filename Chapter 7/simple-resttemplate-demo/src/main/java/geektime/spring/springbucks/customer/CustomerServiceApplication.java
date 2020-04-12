@@ -43,18 +43,19 @@ public class CustomerServiceApplication implements ApplicationRunner {
 		URI uri = UriComponentsBuilder
 				.fromUriString("http://localhost:8080/coffee/{id}")
 				.build(1);
+		//查询1个Coffee
 		ResponseEntity<Coffee> c = restTemplate.getForEntity(uri, Coffee.class);
 		log.info("Response Status: {}, Response Headers: {}", c.getStatusCode(), c.getHeaders().toString());
 		log.info("Coffee: {}", c.getBody());
-
-		String coffeeUri = "http://localhost:8080/coffee/";
-		Coffee request = Coffee.builder()
-				.name("Americano")
-				.price(BigDecimal.valueOf(25.00))
-				.build();
-		Coffee response = restTemplate.postForObject(coffeeUri, request, Coffee.class);
-		log.info("New Coffee: {}", response);
-
+         //添加一个COffee
+			String coffeeUri = "http://localhost:8080/coffee/";
+			Coffee request = Coffee.builder()
+					.name("Americano")
+					.price(BigDecimal.valueOf(25.00))
+					.build();
+			Coffee response = restTemplate.postForObject(coffeeUri, request, Coffee.class);
+			log.info("New Coffee: {}", response);
+        //查询所有的Coffee
 		String s = restTemplate.getForObject(coffeeUri, String.class);
 		log.info("String: {}", s);
 	}

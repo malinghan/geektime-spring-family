@@ -17,6 +17,7 @@ public class SessionDemoApplication {
 		SpringApplication.run(SessionDemoApplication.class, args);
 	}
 
+	//相当于登录
 	@RequestMapping("/hello")
 	public String printSession(HttpSession session, String name) {
 		String storedName = (String) session.getAttribute("name");
