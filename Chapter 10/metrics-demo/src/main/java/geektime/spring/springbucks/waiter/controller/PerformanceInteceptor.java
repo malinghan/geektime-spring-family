@@ -37,6 +37,7 @@ public class PerformanceInteceptor implements HandlerInterceptor {
             String methodName = ((HandlerMethod) handler).getMethod().getName();
             method = beanType + "." + methodName;
         }
+        //采用日志上报到admin
         log.info("{};{};{};{};{}ms;{}ms;{}ms", request.getRequestURI(), method,
                 response.getStatus(), ex == null ? "-" : ex.getClass().getSimpleName(),
                 sw.getTotalTimeMillis(), sw.getTotalTimeMillis() - sw.getLastTaskTimeMillis(),

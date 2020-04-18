@@ -12,12 +12,16 @@ import org.springframework.core.io.Resource;
 
 @Slf4j
 public class YapfEnvironmentPostProcessor implements EnvironmentPostProcessor {
+    //加载属性
     private PropertiesPropertySourceLoader loader = new PropertiesPropertySourceLoader();
+
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
         MutablePropertySources propertySources = environment.getPropertySources();
+        //读取Resource
         Resource resource = new ClassPathResource("yapf.properties");
         try {
+            //转换为PropertySource
             PropertySource ps = loader.load("YetAnotherPropertiesFile", resource)
                     .get(0);
             propertySources.addFirst(ps);
